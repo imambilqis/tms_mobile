@@ -17,9 +17,9 @@ class _TransportsalesState extends State<Transportsales> {
   String barcode = "";
   DateTime pickDate;
   String _mySelection , _mySelectioncustomer,_mySelectionFrom,_mySelectionTo,_bpId;
-  final String url ="http://192.168.1.11/testing/public/api/cashbook";
-  final String url2="http://192.168.1.11/testing/public/api/customer";
-  final String url3="http://192.168.1.11/testing/public/api/point";
+  final String url ="https://63311c25.ngrok.io/testing/public/api/cashbook";
+  final String url2="https://63311c25.ngrok.io/testing/public/api/customer";
+  final String url3="https://63311c25.ngrok.io/testing/public/api/point";
   List data = List();
   List data2 = List();
   List data3 = List();
@@ -540,7 +540,7 @@ class _TransportsalesState extends State<Transportsales> {
                                       fontWeight: FontWeight.w700),
                                   ),
                                   onPressed: (){
-                                    print(_mySelectioncustomer);
+                                    print(_mySelectioncustomer,);
                                   },
                                 ),
                                 new RaisedButton( color: Colors.lightBlueAccent,elevation: 3.0,

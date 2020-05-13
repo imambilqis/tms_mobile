@@ -18,8 +18,6 @@ class Loginscreen extends StatefulWidget {
 
 class _Loginscreenstate extends State<Loginscreen> {
 
-  //blue
-  //gradasi
   List<FocusNode> _focusNodes;
   LoginBloc _formBloc;
 
@@ -65,8 +63,7 @@ class _Loginscreenstate extends State<Loginscreen> {
               //kondiisi jika gagal login
               onFailure: (context,state){
                 LoadingDialog.hide(context);
-                Notifications.showSnackBarWithError(context,
-                    state.failureResponse);
+                Notifications.showSnackBarWithError(context, state.failureResponse);
               },
 
               child: ListView(

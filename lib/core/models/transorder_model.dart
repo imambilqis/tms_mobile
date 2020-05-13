@@ -1,15 +1,14 @@
 class PostTMSModel {
-  final int shipmentTypeId;
-  final int customerId;
-  final int fleetId;
-  final int driverId;
-  final int paymentTypeId;
-  final int cashbookId;
-  final int productId;
+  final String shipmentTypeId;
+  final String customerId;
+  final String fleetId;
+  final String driverId;
+  final String paymentTypeId;
+  final String cashbookId;
+  final String productId;
   final String dateETD;
   final String dateETA;
-  final int toId;
-  final int fromId;
+
 
   PostTMSModel({
     this.shipmentTypeId,
@@ -21,7 +20,6 @@ class PostTMSModel {
     this.productId,
     this.dateETD,
     this.dateETA,
-    this.toId,
-    this.fromId,
+
   });
 }

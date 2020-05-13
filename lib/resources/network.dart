@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:project_inovation/core/models/login_model.dart';
-import 'package:project_inovation/core/models/tms_model.dart';
+import 'package:project_inovation/core/models/transorder_model.dart';
+import 'package:project_inovation/core/models/transroute_model.dart';
 
 class NetworkHelper {
   static Dio _dio;
-  static final _urlApi = 'https://ladri-mzl.karyakoe.id';
+  static final _urlApi = 'https://demo-api.karyakoe.id';
+ 
 
   static Dio getDio() {
     if (null == _dio) {
@@ -55,9 +57,9 @@ class NetworkHelper {
     var response = await post(_urlApi, loginSoap);
     return response;
   }
-  Future createTransorder(PostTMSModel) async{
+  Future createTransorder(PostTMSModel body) async{
     String TransorderSoap='''
-   <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adin="http://3e.pl/ADInterface">
+  <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adin="http://3e.pl/ADInterface">
    <soapenv:Header/>
    <soapenv:Body>
       <adin:createData>
@@ -71,32 +73,28 @@ class NetworkHelper {
                <adin:DataRow>
                   <!--Zero or more repetitions:-->
                   <adin:field column="XM_Driver_ID">
-                     <adin:val>1001149</adin:val>
-                  </adin:field>
-                  
-                  <adin:field column="XM_Fleet_ID">
-                     <adin:val>1000467</adin:val>
+                     <adin:val>${body.driverId}</adin:val>
+                  </adin:field>               
+			            <adin:field column="XM_Fleet_ID">
+                     <adin:val>${body.fleetId}</adin:val>
                   </adin:field>
                   <adin:field column="ContractStatus">
-                     <adin:val>On Call</adin:val>
+                     <adin:val>${body.shipmentTypeId}</adin:val>
                   </adin:field>
                   <adin:field column="M_Product_ID">
-                     <adin:val>1004704</adin:val>
+                     <adin:val>${body.productId}</adin:val>
                   </adin:field>
                   <adin:field column="ETD">
-                     <adin:val>2020-02-06 00:00:00.0</adin:val>
+                     <adin:val>${body.dateETD}</adin:val>
                   </adin:field>
                   <adin:field column="ETA">
-                     <adin:val>2020-02-07 00:00:00.0</adin:val>
+                     <adin:val>${body.dateETA}</adin:val>
                   </adin:field>
                   <adin:field column="TransferAmt">
-                     <adin:val>950000</adin:val>
+                     <adin:val>${body.paymentTypeId}</adin:val>
                   </adin:field>
                   <adin:field column="Customer_ID">
-                     <adin:val>1002975</adin:val>
-                  </adin:field>
-                  <adin:field column="C_Cashbook_ID">
-                     <adin:val>1000012</adin:val>
+                     <adin:val>${body.customerId}</adin:val>
                   </adin:field>
                </adin:DataRow>
             </adin:ModelCRUD>
@@ -118,7 +116,7 @@ class NetworkHelper {
    var responsee = await post(_urlApi, TransorderSoap);
    return responsee;
   }
-  Future transroute (PostTMSModel) async{
+  Future transroute (TransRoute body) async{
     String TransrouteSoap=''' 
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:adin="http://3e.pl/ADInterface">
    <soapenv:Header/>
@@ -137,10 +135,10 @@ class NetworkHelper {
                      <adin:val>1186016</adin:val>
                   </adin:field>
                   <adin:field column="From_ID">
-                     <adin:val>1002740</adin:val>
+                     <adin:val>${body.fromId}</adin:val>
                   </adin:field>
-                  <adin:field column="To_ID">
-                     <adin:val>1003003</adin:val>
+                   <adin:field column="To_ID">
+                     <adin:val>${body.toId}</adin:val>
                   </adin:field>
                </adin:DataRow>
             </adin:ModelCRUD>
